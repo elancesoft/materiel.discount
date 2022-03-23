@@ -32,12 +32,12 @@ app.get("/api/ggmmoebel/:url", async (req, res) => {
 
     // console.log(url);
 
-    // await page.goto(url, { waitUntil: 'networkidle0' });
-    // const data = await page.evaluate(() => document.querySelector('*').outerHTML);
+    await page.goto(url, { waitUntil: 'networkidle0' });
+    const data = await page.evaluate(() => document.querySelector('*').outerHTML);
 
     res.status(200).json({
-      html: url 
-    })
+      html: data 
+    });
     
     await browser.close();
   } catch (err) {
@@ -47,12 +47,20 @@ app.get("/api/ggmmoebel/:url", async (req, res) => {
 
 app.get("/api/ggmgastro/:url", async (req, res) => {
   try {
+
+    const browser = await puppeteer.launch();
+    const [page] = await browser.pages();
     
-    const url = 'https://www.ggmmoebel.com/fr-fr-eur/' + req.params.url;
+    const url = 'https://www.ggmgastro.com/fr-fr-eur/' + req.params.url;
+
+    await page.goto(url, { waitUntil: 'networkidle0' });
+    const data = await page.evaluate(() => document.querySelector('*').outerHTML);
 
     res.status(200).json({
-      url: url 
-    })
+      html: data 
+    });
+
+    await browser.close();
     
   } catch (err) {
     res.status(500).json(err);
