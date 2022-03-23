@@ -45,7 +45,19 @@ app.get("/api/ggmmoebel/:url", async (req, res) => {
   }
 });
 
+app.get("/api/ggmgastro/:url", async (req, res) => {
+  try {
+    
+    const url = 'https://www.ggmmoebel.com/fr-fr-eur/' + req.params.url;
 
+    res.status(200).json({
+      url: url 
+    })
+    
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 
