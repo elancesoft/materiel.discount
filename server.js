@@ -30,13 +30,13 @@ app.get("/api/ggmmoebel/:url", async (req, res) => {
 
     const url = 'https://www.ggmmoebel.com/fr-fr-eur/' + req.params.url;
 
-    console.log(url);
+    // console.log(url);
 
-    await page.goto(url, { waitUntil: 'networkidle0' });
-    const data = await page.evaluate(() => document.querySelector('*').outerHTML);
+    // await page.goto(url, { waitUntil: 'networkidle0' });
+    // const data = await page.evaluate(() => document.querySelector('*').outerHTML);
 
     res.status(200).json({
-      html: data 
+      html: url 
     })
     
     await browser.close();
