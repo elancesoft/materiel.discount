@@ -18,7 +18,13 @@ app.listen(process.env.PORT || 3000, () => {
 
 app.get("/api/test", async (req, res) => {
   try {
-    
+    const browser = await puppeteer.launch();
+    const [page] = await browser.pages();
+
+    const url = 'https://www.ggmmoebel.com/fr-fr-eur/' + req.params.url;
+
+    await page.goto(url, { waitUntil: 'networkidle0' });
+    const data = await page.evaluate(() => document.querySelector('*').outerHTML);
 
 
     res.status(200).json({
