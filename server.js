@@ -16,17 +16,16 @@ app.listen(process.env.PORT || 3000, () => {
   console.log("Server is running...");
 });
 
+const browser = puppeteer.launch({
+  args: ["--no-sandbox", "--disable-setuid-sandbox"]
+});
+
 app.get("/api/test", async (req, res) => {
   try {
     // const browser = await puppeteer.launch();
-    const browser = await puppeteer.launch({
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-      ],
-    });
-    
-    const [page] = await browser.pages();
+
+    // const [page] = await browser.pages();
+    page = await (await browser).newPage();
 
     const url = 'https://www.ggmmoebel.com/fr-fr-eur/' + req.params.url;
 
