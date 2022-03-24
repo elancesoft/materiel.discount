@@ -18,8 +18,15 @@ app.listen(process.env.PORT || 3000, () => {
 
 app.get("/api/test", async (req, res) => {
   try {
-    const browser = await puppeteer.launch();
-    //const [page] = await browser.pages();
+    // const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+      ],
+    });
+    
+    const [page] = await browser.pages();
 
     const url = 'https://www.ggmmoebel.com/fr-fr-eur/' + req.params.url;
 
