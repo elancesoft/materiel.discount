@@ -2,16 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const puppeteer = require('puppeteer');
 
-const rp = require('request-promise');
-
 const app = express();
 
 var bodyParser = require("body-parser");
 const morgan = require("morgan");
-
-const dotenv = require("dotenv");
-const { application } = require("express");
-
 
 app.use(bodyParser.json({ limit: "50mb" }));
 
@@ -28,16 +22,20 @@ app.get("/api/ggmmoebel/:url", async (req, res) => {
     const browser = await puppeteer.launch();
     const [page] = await browser.pages();
 
-    const url = 'https://www.ggmmoebel.com/fr-fr-eur/' + req.params.url;
+    //Test: https://www.ggmmoebel.com/fr-fr-eur/diner-vegas-2-banc-de-salle-a-manger-l160xh103cm-turquoise-blanc-matelassage-en-v
 
-    // console.log(url);
+    const url = 'https://www.ggmmoebel.com/fr-fr-eur/' + req.params.url;
 
     await page.goto(url, { waitUntil: 'networkidle0' });
     const data = await page.evaluate(() => document.querySelector('*').outerHTML);
 
+
     res.status(200).json({
-      html: data 
+      html: '<div class="test"><h1>hello</h1></div>' 
     });
+
+    // res.setHeader('Content-Type', 'application/json');
+    // res.end(JSON.stringify({ html: data }));
     
     await browser.close();
   } catch (err) {

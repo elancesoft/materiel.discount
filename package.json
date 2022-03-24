@@ -10,19 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.26.1",
     "body-parser": "^1.19.2",
-    "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "ejs": "^3.1.6",
     "express": "^4.17.3",
-    "got": "^12.0.2",
-    "http": "^0.0.1-security",
-    "jsdom": "^19.0.0",
     "morgan": "^1.10.0",
-    "pretty": "^2.0.0",
-    "puppeteer": "^13.5.1",
-    "request-promise": "^4.2.6"
+    "puppeteer": "^13.5.1"
   }
 }
