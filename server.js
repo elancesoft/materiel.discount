@@ -16,6 +16,21 @@ app.listen(process.env.PORT || 3000, () => {
   console.log("Server is running...");
 });
 
+app.get("/api/test", async (req, res) => {
+  try {
+    
+
+
+    res.status(200).json({
+      html: '<div class="test"><h1>hello</h1></div>' 
+    });
+
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 app.get("/api/ggmmoebel/:url", async (req, res) => {
   try {
